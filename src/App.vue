@@ -20,12 +20,18 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
   name: 'App',
+  computed: {
+    ...mapState(["test"])
+  },
   components: {
     "seller-header": header
   },
-
+mounted() {
+  
+},
 }
 </script>
 
