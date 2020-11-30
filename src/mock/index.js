@@ -13,4 +13,4 @@ Mock.mock("/api/ratings",{
   data:data.ratings
 })
 // 输出结果
-console.log(JSON.stringify(data, null, 4))
+console.log(JSON.stringify(data, null, 4))  

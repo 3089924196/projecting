@@ -20,18 +20,20 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState} from 'vuex';
+import header from 'components/header/header.vue'
 export default {
   name: 'App',
   computed: {
     ...mapState(["test"])
   },
-  components: {
-    "seller-header": header
-  },
+ 
 mounted() {
   
 },
+ components: {
+    "seller-header": header
+  },
 }
 </script>
 
@@ -44,11 +46,13 @@ mounted() {
   .header
     zoom 1
   .navs
-    one-px(black)
+    one-px(red)
     display flex
     height 40px
+    
     .nav
       flex 1
+      alig-items center
       a
         display flex
         justify-content center
@@ -56,7 +60,7 @@ mounted() {
         width 100%
         height 100%
         font-size 14px
-        color rgb a(77, 85, 93, 1)
+        color rgba(77, 85, 93, 1)
         &.active
           color rgba(240, 20, 20, 1)
   .router

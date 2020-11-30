@@ -13,7 +13,7 @@
                     <span class="info">{{seller.description}}/{{seller.deliveryTime}}分钟送达</span>
                 </div>
                 <div class="supports" v-if="seller.supports&&seller.supports[0]">
-                    <seller-icon class="icon" size="1"
+                    <seller-icon class="icon" :size="1"
                                  :type="iconType"></seller-icon>
                     <span class="text" >
                         {{seller.supports[0].content}}
@@ -70,6 +70,7 @@
 </template>
 
 <script>
+import icon from 'components/icon/icon'
     import {mapState} from "vuex";
     import list from "components/list/list.vue"
     import stars from "components/stars/stars.vue"
@@ -91,7 +92,8 @@
         },
         components:{
             "seller-list":list,
-            "seller-stars":stars
+            "seller-stars":stars,
+            "seller-icon":icon
         }
     }
 </script>
@@ -126,7 +128,7 @@
                     margin-bottom 8px
                     .brand
                         bg-image(brand)
-                        background-repeat no-repeat
+                         background-repeat no-repeat
                         background-size 100%
                         display inline-block
                         width 30px
