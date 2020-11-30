@@ -1,5 +1,5 @@
 const path = require('path');
-
+const data = require("./src/mock/data")
 module.exports = {
   lintOnSave: false,
   devServer: {
