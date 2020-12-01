@@ -20,20 +20,25 @@
 </template>
 
 <script>
-import {mapState} from 'vuex';
+import {GETSELLER,GETGOODS,GETRATINGS} from 'store/mutation_types.js'
+import {mapActions} from 'vuex';
 import header from 'components/header/header.vue'
 export default {
   name: 'App',
   computed: {
-    ...mapState(["test"])
+   
   },
- 
-mounted() {
-  
+ methods: {
+  ...mapActions([GETSELLER,GETGOODS,GETRATINGS])
+  },
+async mounted() {
+ await this[GETSELLER]();
+
 },
  components: {
     "seller-header": header
   },
+  
 }
 </script>
 

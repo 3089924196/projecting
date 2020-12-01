@@ -1,6 +1,6 @@
 export default {
     seller:{},
-    good:[],
+    goods:[],
     ratings:[],
-    state:OK
+    OK:200
 }

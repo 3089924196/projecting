@@ -7,10 +7,10 @@
             <div class="top_right">
                 <div class="title">
                     <i class="brand"></i>
-                    <span class="name"></span>
+                    <span class="name">{{seller.name}}</span>
                 </div>
                 <div class="delivery">
-                    <span class="info">20分钟送达</span>
+                    <span class="info">{{seller.description}}/{{seller.deliveryTime}}</span>
                 </div>
                 <div class="supports">
                     <seller-icon class="icon" :size="1"
@@ -35,7 +35,7 @@
             <i class="seller-keyboard_arrow_right arrow_right"></i>
         </div>
         <div class="bg">
-            <!-- <img :src="seller.bgImg"> -->
+            <img :src="seller.bgImg">
         </div>
         <transition name="mask">
             <div class="mask">
@@ -70,10 +70,15 @@
 <script>
 import icon from 'components/icon/icon'
 import list from 'components/list/list'
-    // import {mapState} from "vuex";
+import {mapState} from "vuex";
     export default {
         name: "seller-header",
-         
+      computed:{
+      ...mapState(["seller"]),
+      },
+      components:{
+        "seller-list":list,
+      }  
     }
 </script>
 
