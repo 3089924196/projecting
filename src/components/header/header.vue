@@ -46,16 +46,8 @@
                             <span>{{seller.name}}</span>
                         </div>
                         <!--评星组件-->
-                        <div class="starsWrap">
-                            <seller-stars size="48" :score="seller.score"></seller-stars>
-                        </div>
-                        <seller-line class="line">
-                            <span>优惠信息</span>
-                        </seller-line>
-                        <seller-list :supports="seller.supports"></seller-list>
-                        <seller-line class="line">
-                            <span>商家公告</span>
-                        </seller-line>
+                       
+                        
                         <p class="bulletin">
                             {{seller.bulletin}}
                         </p>
@@ -72,8 +64,6 @@
 <script>
 import icon from 'components/icon/icon'
     import {mapState} from "vuex";
-    import list from "components/list/list.vue"
-    import stars from "components/stars/stars.vue"
     export default {
         name: "seller-header",
         data(){
@@ -100,7 +90,6 @@ import icon from 'components/icon/icon'
 
 <style scoped lang="stylus">
     @import "../../common/stylus/mixin.styl"
-    @import "../../common/stylus/extend.styl"
     .seller_header
         background rgba(7,17,27,.5)
         position relative
@@ -128,7 +117,7 @@ import icon from 'components/icon/icon'
                     margin-bottom 8px
                     .brand
                         bg-image(brand)
-                         background-repeat no-repeat
+                        background-repeat no-repeat
                         background-size 100%
                         display inline-block
                         width 30px
@@ -188,6 +177,7 @@ import icon from 'components/icon/icon'
             font-size 10px
             font-weight 200
             position relative
+            top 1px
             .icon
                 bg-image(bulletin)
                 background-size 100%
@@ -199,7 +189,9 @@ import icon from 'components/icon/icon'
                 position relative
                 top 1px
             .text
-                zoom 1
+                 font-siz 10px
+                 color rgba(255, 255,255,1)
+                 font-weight 200
             .arrow_right
                 position absolute
                 right 12px
@@ -240,31 +232,15 @@ import icon from 'components/icon/icon'
                         line-height 16px
                         color rgba(255,255,255,1)
                         font-weight 700
-                    .starsWrap
-                        width 80%
-                        margin 0 auto
-                        margin-top 16px
-                        margin-bottom 28px
-                        text-align center
-                    .line
-                        width 80%
-                        margin 0 auto
-                    .bulletin
-                        width 80%
-                        margin 0 auto
-                        margin-top 24px
-                        box-sizing border-box
-                        padding 0 12px
-                        color white
-                        font-size 12px
-                        line-height 24px
             .footer
-                margin-top -96px
                 width 100%
                 height 96px
-                line-height 96px
+                line-height -96px
                 text-align center
+                margin-top 96px
                 .close
-                    color rgba(255,255,255,.5)
+                    color rgba(255,255,255,1)
                     font-size 32px
+
+
 </style>
