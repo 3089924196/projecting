@@ -7,54 +7,60 @@
             <div class="top_right">
                 <div class="title">
                     <i class="brand"></i>
-                    <span class="name">{{seller.name}}</span>
+                    <span class="name"></span>
                 </div>
                 <div class="delivery">
-                    <span class="info">{{seller.description}}/{{seller.deliveryTime}}分钟送达</span>
+                    <span class="info">20分钟送达</span>
                 </div>
-                <div class="supports" v-if="seller.supports&&seller.supports[0]">
+                <div class="supports">
                     <seller-icon class="icon" :size="1"
                                  :type="iconType"></seller-icon>
                     <span class="text" >
-                        {{seller.supports[0].content}}
+                       在线支付满28减8，满50减5
                     </span>
                 </div>
             </div>
-            <div class="btns" @click="showMask=true">
+            <div class="btns">
                 <span class="count" v-if="seller.supports">
-                    {{seller.supports.length}}个
+                    
                 </span>
                 <i class="seller-keyboard_arrow_right arrow_right"></i>
             </div>
         </div>
-        <div class="bottom" @click="showMask=true">
+        <div class="bottom">
             <i class="icon"></i>
             <span class="text">
-                {{seller.bulletin}}
+               
             </span>
             <i class="seller-keyboard_arrow_right arrow_right"></i>
         </div>
         <div class="bg">
-            <img :src="seller.bgImg">
+            <!-- <img :src="seller.bgImg"> -->
         </div>
         <transition name="mask">
-            <div class="mask" v-show="showMask">
+            <div class="mask">
                 <div class="contentWrap">
                     <div class="content">
                         <!--真正的遮罩内容-->
                         <div class="title">
-                            <span>{{seller.name}}</span>
+                            <span>茄子哥</span>
                         </div>
                         <!--评星组件-->
-                       
-                        
+                       <div class="stars"></div>
+                        <seller-line class="line">
+                            <span class="text">优惠信息</span>
+                        </seller-line>
+                        <seller-list></seller-list>
+                        <seller-line class="line">
+                            <span class="text">商家公告</span>
+                        </seller-line>
                         <p class="bulletin">
-                            {{seller.bulletin}}
+                            
                         </p>
                     </div>
                 </div>
                 <div class="footer">
-                    <i class="seller-close close" @click="showMask=false"></i>
+                    <!-- <i class="seller-close close"></i> -->
                 </div>
             </div>
         </transition>
@@ -63,33 +69,17 @@
 
 <script>
 import icon from 'components/icon/icon'
-    import {mapState} from "vuex";
+import list from 'components/list/list'
+    // import {mapState} from "vuex";
     export default {
         name: "seller-header",
-        data(){
-          return {
-              showMask:false
-          }
-        },
-        computed:{
-            ...mapState(["seller"]),
-           /* 什么时候使用计算属性:
-                1. 当需要在模板内进行大量运算的时候 最好使用计算属性
-                2. 当可以明显分析属于有依赖数据的存在时 最好使用计算属性*/
-            iconType(){
-                return this.seller.supports[0].type
-            }
-        },
-        components:{
-            "seller-list":list,
-            "seller-stars":stars,
-            "seller-icon":icon
-        }
+         
     }
 </script>
 
 <style scoped lang="stylus">
     @import "../../common/stylus/mixin.styl"
+    @import "../../common/stylus/extend.styl"
     .seller_header
         background rgba(7,17,27,.5)
         position relative
@@ -232,15 +222,25 @@ import icon from 'components/icon/icon'
                         line-height 16px
                         color rgba(255,255,255,1)
                         font-weight 700
+                    .line
+                        width 80%
+                        margin 0 auto
+                    .bulletin
+                        width 80%
+                        margin 0 auto
+                        margin-top 24px
+                        box-sizing border-box
+                        padding 0 12px
+                        color white
+                        font-size 12px
+                        line-height 24px    
             .footer
                 width 100%
                 height 96px
                 line-height -96px
                 text-align center
                 margin-top 96px
-                .close
-                    color rgba(255,255,255,1)
-                    font-size 32px
+               
 
 
 </style>
