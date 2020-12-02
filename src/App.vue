@@ -44,7 +44,8 @@ async mounted() {
 #app
     width 100%
     height 100%
-    position: relative
+    position relative
+    background pink
     .header
       zoom 1
     .navs
