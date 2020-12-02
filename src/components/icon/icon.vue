@@ -4,7 +4,7 @@
 
 <script>
     export default {
-        name: "seller-icon",
+        name: "seller_icon",
         props:{
             size:String,
             type:Number

@@ -1,27 +1,23 @@
 <template>
  <ul class="list">
-   <li>
-     <seller-icon class="icon" size="2" type="discount"></seller-icon>
-     <span>在线支付满28见士大夫，满50奖11</span>
+   <li v-for="(support, index) in supports" :key="index">
+     <seller-icon class="icon" size="2" :type="support.type"></seller-icon>
+     <span>{{support.content}}</span>
    </li>
-   <li>
-     <seller-icon class="icon" size="2" type="decrease"></seller-icon>
-     <span>在线支付满225，满50奖12313</span>
-   </li>
-   <li>
-     <seller-icon class="icon" size="2" type="gurantee"></seller-icon>
-     <span>在线支付满300水电，满50奖9999</span>
-   </li>
-   <li>
-     <seller-icon class="icon" size="2" type="invoice"></seller-icon>
-     <span>在线支付满89见fvvfg，满00</span>
-   </li>
+  
  </ul>
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
   name: 'list',
+  props:{
+    supports:Array
+  },
+  computed:{
+    ...mapState(["iconTypes"]),
+  }
 }
 </script>
 

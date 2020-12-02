@@ -6,6 +6,7 @@ import axios from 'http/http.js'
 import "@/mock"
 import "@/common/components"
 import "@/common/stylus/font.styl"
+import  "@/common/stylus/transition.styl"
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 

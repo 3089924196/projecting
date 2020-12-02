@@ -25,9 +25,6 @@ import {mapActions} from 'vuex';
 import header from 'components/header/header.vue'
 export default {
   name: 'App',
-  computed: {
-   
-  },
  methods: {
   ...mapActions([GETSELLER,GETGOODS,GETRATINGS])
   },
@@ -66,4 +63,11 @@ async mounted() {
           color rgba(77,85,93,1)
           &.active
             color rgba(240,20,20,1)
+    .router
+        /*实现了在所有设备下 根据设备不一样 固定的高度也不一样*/
+        position absolute
+        left 0
+        right 0
+        top 174px
+        bottom 0
 </style>

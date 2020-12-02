@@ -1,30 +1,30 @@
 <template>
-  <div class="lineWrap">
-    <span class="line"></span>
-    <slot></slot>
-    <span class="line"></span>
-  </div>
+    <div class="lineWrap">
+        <span class="line"></span>
+        <slot></slot>
+        <span class="line"></span>
+    </div>
 </template>
 
 <script>
-export default {
-  name: 'seller-line',
-}
+    export default {
+        name: "seller-line"
+    }
 </script>
 
-<style lang="stylus" scoped>
+<style scoped lang="stylus">
+   
     .lineWrap
-       color rgba(255,255,255,1)
+        color rgba(255,255,255,1)
         display flex
         align-items center
         .line
-            background rgba(255,255,255,2)
-            flex 1
             height 1px
-            &:nth-child(1)
+            background  rgba(255,255,255,1)
+            flex 1
+            &:first-child
                 margin-right 12px
-            &:&:nth-child(3)
+            &:last-child
                 margin-left 12px
 
-        
 </style>

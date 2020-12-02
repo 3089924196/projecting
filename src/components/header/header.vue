@@ -1,5 +1,5 @@
 <template>
-    <div class="seller_header">
+     <div class="seller_header">
         <div class="top">
             <div class="top_left">
                 <img class="avatar" :src="seller.avatar">
@@ -10,27 +10,27 @@
                     <span class="name">{{seller.name}}</span>
                 </div>
                 <div class="delivery">
-                    <span class="info">{{seller.description}}/{{seller.deliveryTime}}</span>
+                    <span class="info">{{seller.description}}/{{seller.deliveryTime}}分钟送达</span>
                 </div>
-                <div class="supports">
-                    <seller-icon class="icon" :size="1"
+                <div class="supports" v-if="seller.supports&&seller.supports[0]">
+                    <seller-icon class="icon" size="1"
                                  :type="iconType"></seller-icon>
                     <span class="text" >
-                       在线支付满28减8，满50减5
+                        {{seller.supports[0].content}}
                     </span>
                 </div>
             </div>
-            <div class="btns">
+            <div class="btns" @click="showMask=true">
                 <span class="count" v-if="seller.supports">
-                    
+                    {{seller.supports.length}}个
                 </span>
                 <i class="seller-keyboard_arrow_right arrow_right"></i>
             </div>
         </div>
-        <div class="bottom">
+        <div class="bottom" @click="showMask=true">
             <i class="icon"></i>
             <span class="text">
-               
+                {{seller.bulletin}}
             </span>
             <i class="seller-keyboard_arrow_right arrow_right"></i>
         </div>
@@ -38,29 +38,31 @@
             <img :src="seller.bgImg">
         </div>
         <transition name="mask">
-            <div class="mask">
+            <div class="mask" v-show="showMask">
                 <div class="contentWrap">
                     <div class="content">
                         <!--真正的遮罩内容-->
                         <div class="title">
-                            <span>茄子哥</span>
+                            <span>{{seller.name}}</span>
                         </div>
                         <!--评星组件-->
-                       <div class="stars"></div>
+                        <div class="starsWrap">
+                            <seller-stars size="48" :score="seller.score"></seller-stars>
+                        </div>
                         <seller-line class="line">
-                            <span class="text">优惠信息</span>
+                            <span>优惠信息</span>
                         </seller-line>
-                        <seller-list></seller-list>
+                        <seller-list :supports="seller.supports"></seller-list>
                         <seller-line class="line">
-                            <span class="text">商家公告</span>
+                            <span>商家公告</span>
                         </seller-line>
                         <p class="bulletin">
-                            
+                            {{seller.bulletin}}
                         </p>
                     </div>
                 </div>
                 <div class="footer">
-                    <!-- <i class="seller-close close"></i> -->
+                    <i class="seller-close close" @click="showMask=false"></i>
                 </div>
             </div>
         </transition>
@@ -68,22 +70,34 @@
 </template>
 
 <script>
-import icon from 'components/icon/icon'
-import list from 'components/list/list'
-import {mapState} from "vuex";
+ import {mapState} from "vuex";
+    import list from "components/list/list.vue"
+    import stars from "components/stars/stars.vue"
     export default {
         name: "seller-header",
-      computed:{
-      ...mapState(["seller"]),
-      },
-      components:{
-        "seller-list":list,
-      }  
+        data(){
+          return {
+              showMask:false
+          }
+        },
+        computed:{
+            ...mapState(["seller"]),
+           /* 什么时候使用计算属性:
+                1. 当需要在模板内进行大量运算的时候 最好使用计算属性
+                2. 当可以明显分析属于有依赖数据的存在时 最好使用计算属性*/
+            iconType(){
+                return this.seller.supports[0].type
+            }
+        },
+        components:{
+            "seller-list":list,
+            "seller-stars":stars
+        }
     }
 </script>
 
 <style scoped lang="stylus">
-    @import "../../common/stylus/mixin.styl"
+     @import "../../common/stylus/mixin.styl"
     @import "../../common/stylus/extend.styl"
     .seller_header
         background rgba(7,17,27,.5)
@@ -172,7 +186,6 @@ import {mapState} from "vuex";
             font-size 10px
             font-weight 200
             position relative
-            top 1px
             .icon
                 bg-image(bulletin)
                 background-size 100%
@@ -184,9 +197,7 @@ import {mapState} from "vuex";
                 position relative
                 top 1px
             .text
-                 font-siz 10px
-                 color rgba(255, 255,255,1)
-                 font-weight 200
+                zoom 1
             .arrow_right
                 position absolute
                 right 12px
@@ -227,6 +238,12 @@ import {mapState} from "vuex";
                         line-height 16px
                         color rgba(255,255,255,1)
                         font-weight 700
+                    .starsWrap
+                        width 80%
+                        margin 0 auto
+                        margin-top 16px
+                        margin-bottom 28px
+                        text-align center
                     .line
                         width 80%
                         margin 0 auto
@@ -238,14 +255,14 @@ import {mapState} from "vuex";
                         padding 0 12px
                         color white
                         font-size 12px
-                        line-height 24px    
+                        line-height 24px
             .footer
+                margin-top -96px
                 width 100%
                 height 96px
-                line-height -96px
+                line-height 96px
                 text-align center
-                margin-top 96px
-               
-
-
+                .close
+                    color rgba(255,255,255,.5)
+                    font-size 32px
 </style>
