@@ -35,7 +35,8 @@ export default {
   name: "goods",
   data(){
     return{
-
+    scrollY:0,
+    heightArr:[]
     }
   },
   async mounted() {
@@ -43,13 +44,53 @@ export default {
   },
   computed:{
     ...mapState(["goods","iconTypes"]),
+    currentIndex(){
+      var index=0,
+      index=this.heightArr.findIndex((item,index,arr)=>{
+      return (this.scrollY >= item && this.scrollY<arr[index+1])
+      })
+      if(index !==this.oldIndex){
+        this.oldIndex=index
+        let typeLiNodes=this.$refs.typeList && this.$refs.type.children;
+        this.leftScroll && this.leftScroll.scrollToElement(typeLiNodes[index],300)
+      }
+      return index
+    }
+    
   },
 methods: {
   ...mapActions([GETGOODS]),
-  
+  initScroll(){
+    this.$nexTick(()=>{
+      this.leftScroll=new BetterScroll(this.$refs.left,{click:true});
+      this.rightScroll=new BetterScroll(this.$refs.right,{
+        click:true,
+        probeType:3
+        });
+        this.rightScroll.on("scroll",({x,y})=>{
+          this.scrollY=Math.abs(y)
+        })
+    })
+  },
+  initHeightArr(){
+    this.$nexTick(()=>{
+      let rightLiNodes=this.$refs.classList.children;
+      let height =0;
+      let heights=[height];
+      rightLiNodes.forEach((item)=>{
+        height+=item.offsetHeight;
+        heights.push(height)
+
+      })
+      this.heightArr=heights
+    })
+  },
+  leftToRight(index){
+    this.rightScroll.scrollTo(0,-this.heightArr[index],300)
+  }
 },
 components:{
-  "seller-food":food
+  "seller-food":food,
 }
 }
 </script>
