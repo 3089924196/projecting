@@ -20,13 +20,13 @@
 </template>
 
 <script>
-import {GETSELLER,GETGOODS,GETRATINGS} from 'store/mutation_types.js'
+import {GETSELLER,GETSGOODS,GETRATINGS} from 'store/mutation_types.js'
 import {mapActions} from 'vuex';
 import header from 'components/header/header.vue'
 export default {
   name: 'App',
  methods: {
-  ...mapActions([GETSELLER,GETGOODS,GETRATINGS])
+  ...mapActions([GETSELLER,GETSGOODS,GETRATINGS])
   },
 async mounted() {
  await this[GETSELLER]();
@@ -41,11 +41,10 @@ async mounted() {
 
 <style scoped lang="stylus">
 @import './common/stylus/mixin.styl'
-#app
+ #app
     width 100%
     height 100%
-    position relative
-    background pink
+    position: relative
     .header
       zoom 1
     .navs
@@ -64,6 +63,7 @@ async mounted() {
           color rgba(77,85,93,1)
           &.active
             color rgba(240,20,20,1)
+
     .router
         /*实现了在所有设备下 根据设备不一样 固定的高度也不一样*/
         position absolute

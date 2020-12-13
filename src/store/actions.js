@@ -1,4 +1,4 @@
-import {GETSELLER,GETGOODS,GETRATINGS} from "store/mutation_types.js";
+import {GETSELLER,GETSGOODS,GETRATINGS} from "store/mutation_types.js";
 import axios from 'http/http';
 export default {
 async [GETSELLER]({commit,state}){
@@ -7,10 +7,10 @@ if(code===state.OK){
   commit(GETSELLER,data)
 }
 },
-async [GETGOODS]({commit,state}){
+async [GETSGOODS]({commit,state}){
   const {data,code}=await axios.get("/api/goods")
   if(code===state.OK){
-    commit(GETGOODS,data)
+    commit(GETSGOODS,data)
   }
   },
   async [GETRATINGS]({commit,state}){

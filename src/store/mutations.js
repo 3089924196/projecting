@@ -1,9 +1,9 @@
-import {GETSELLER,GETGOODS,GETRATINGS} from "store/mutation_types.js";
+import {GETSELLER,GETSGOODS,GETRATINGS} from "store/mutation_types.js";
 export default {
   [GETSELLER](state,seller){
     state.seller=seller
   },
-  [GETGOODS](state,goods){
+  [GETSGOODS](state,goods){
     state.goods=goods
   },
   [GETRATINGS](state,ratings){

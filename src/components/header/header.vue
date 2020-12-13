@@ -99,7 +99,7 @@
 <style scoped lang="stylus">
      @import "../../common/stylus/mixin.styl"
     @import "../../common/stylus/extend.styl"
-    .seller_header
+   .seller_header
         background rgba(7,17,27,.5)
         position relative
         overflow hidden

@@ -7,6 +7,9 @@ import "@/mock"
 import "@/common/components"
 import "@/common/stylus/font.styl"
 import  "@/common/stylus/transition.styl"
+import "@/filter/filter.js"
+Vue.prototype.$bus=new Vue()
+
 Vue.prototype.$axios = axios
 Vue.config.productionTip = false
 

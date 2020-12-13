@@ -3,5 +3,5 @@ export default {
     goods:[],
     ratings:[],
     OK:200,
-    iconTypes:["decrease","discount","gurantee","invoice","special"]
+    
 }

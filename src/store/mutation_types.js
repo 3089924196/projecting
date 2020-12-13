@@ -1,3 +1,3 @@
 export const GETSELLER="getSeller";
-export const GETGOODS="getGoods";
+export const GETSGOODS="getGoods";
 export const GETRATINGS="getRatings";
